@@ -95,7 +95,7 @@ export const Login = () => {
       console.error("Por favor, preencha todos os campos.");
       return;
     }
-   
+
     try {
       setCarregando(true)
       const data = await getAllLogins()
