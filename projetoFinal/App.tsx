@@ -1,18 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login';
+import { NavigationContainer } from "@react-navigation/native";
+import { MyStack } from "./src/routes/stack";
+import { KeyboardAvoidingView } from "react-native";
+
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Login/>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <NavigationContainer>
+      <MyStack/>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-  },
-});
