@@ -8,10 +8,10 @@ import {
   FlatList
 } from "react-native";
 import { getAllLogins } from "../../services/Login/LoginService";
-import { Logins } from "../../types";
+import { Logins } from "../../../src/types/types";
 import { useFonts } from "expo-font";
 import { homeStyles } from "./HomeStyles";
-import TitulosLivros from "../../../../TitulosLivros.json";
+import TitulosLivros from "../../../TitulosLivros.json";
 
 export const Home = () => {
   const [allLogins, setAllLogins] = useState<Logins[]>([]);
@@ -34,8 +34,8 @@ export const Home = () => {
   }, []);
 
   const [fontsLoaded] = useFonts({
-    "Poppins-SemiBold": require("../../../../assets/fonts/Poppins-SemiBold.ttf"),
-    "Poppins-Bold": require("../../../../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -68,7 +68,7 @@ export const Home = () => {
           </Text>
           <View style={homeStyles.containerPesquisa}>
             <Image
-              source={require("../../../../assets/image/Vector.png")}
+              source={require("../../../assets/image/Vector.png")}
               style={homeStyles.iconLupa}
             />
             <TextInput
@@ -80,7 +80,7 @@ export const Home = () => {
           </View>
         </View>
         <Image
-          source={require("../../../../assets/image/IconPerfil.png")}
+          source={require("../../../assets/image/IconPerfil.png")}
           style={homeStyles.imagem}
         />
       </View>

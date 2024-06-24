@@ -7,8 +7,11 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useFonts } from "expo-font";
+import { useState } from "react";
+import { ModalComponent } from "../Modals/ModalComponent";
 
 const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
 const Lixeira = require("../../../assets/icons/Lixeira.png");
@@ -20,9 +23,12 @@ export const DetalheProduto = () => {
     "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const editar = () => { setModalVisible(!modalVisible)}
+
   return (
-    <ScrollView>
-      <View style={style.container}>
+    <ScrollView style={style.container}>
         <View style={style.containerAzul}>
           <View style={style.header}>
             <View style={style.goBack}>
@@ -47,7 +53,7 @@ export const DetalheProduto = () => {
                 <Text style={style.textAutorLivro}>Autor(a) aqui</Text>
               </View>
               <View style={style.containerBotao}>
-                <TouchableOpacity activeOpacity={0.4} style={style.button}>
+                <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={editar}>
                   <Text style={style.buttonText}>Editar Produto</Text>
                 </TouchableOpacity>
               </View>
@@ -99,7 +105,7 @@ export const DetalheProduto = () => {
             </View>
           </View>
         </View>
-      </View>
+      <ModalComponent visible={modalVisible} onRequestClose={editar}/>
     </ScrollView>
   );
 };
@@ -108,6 +114,9 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#6495ED",
+  },
+  keyboardAvoidingContainer: {
+    flex: 1,
   },
   containerAzul: {
     flex: 1,

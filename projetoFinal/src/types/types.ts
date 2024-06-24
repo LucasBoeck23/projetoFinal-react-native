@@ -9,3 +9,15 @@ export type Books ={
     imagem: string;
     sinapse: string;
   };
+
+  export interface ModalEditar {
+    visible:boolean,
+    onRequestClose: () => void
+  }
+
+  
+export type Logins = {
+  "id" : string;
+  "email":string;
+  "password":string;
+}

@@ -79,7 +79,7 @@ export const MyStack = () => {
     <Screen
     name="Main"
     component={MyTabs}
-    options={{ headerShown: false }}
+    options={{ headerShown: false}}
     />
   </Navigator>
   )

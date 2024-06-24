@@ -13,7 +13,7 @@ import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { getAllLogins, postNewLogin } from "../../services/Login/LoginService";
-import { Logins } from "../../routes/types";
+import { Logins } from "../../types/types";
 
 export const Login = () => {
   const icone = require("../../../assets/image/IconeApp.png");
@@ -118,7 +118,11 @@ export const Login = () => {
     setCarregando(false)
   }
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardAvoidingView
+    behavior={"height"}
+    style={{ flex: 1 }}
+    keyboardVerticalOffset={-100} // Ajuste esse valor conforme necessário
+  >
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>
           <Image source={icone} style={styles.icone} />
