@@ -50,16 +50,22 @@ export const homeStyles = StyleSheet.create({
     fontSize: 16,
   },
   itemContainer: {
-    flex: 1,
     alignItems: "center",
-    
+
   },
   vitrineContainer: {
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
   livroImage: {
     width: 100,
     height: 140,
-    marginTop: 20,
+    marginTop: "15%",
+    marginLeft: "8%",
+  },
+  textPrecoLivro: {
+    marginTop: "5%",
+    color: "#012E43",
+    fontSize: 14,
+    fontFamily: "Poppins-SemiBold",
   },
 });

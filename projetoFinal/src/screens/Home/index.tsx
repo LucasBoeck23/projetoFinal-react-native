@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Text,
   View,
   Image,
   TextInput,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  TouchableOpacity,
 } from "react-native";
+import { HomeProps } from "../../routes/stack";
 import { getAllLogins } from "../../services/Login/LoginService";
 import { Logins } from "../../../src/types/types";
 import { useFonts } from "expo-font";
 import { homeStyles } from "./HomeStyles";
-import TitulosLivros from "../../../TitulosLivros.json";
+import { getAllBooks } from "../../services/Books/booksService";
+import { Books } from "../../types/types";
+import { useFocusEffect } from "@react-navigation/native";
 
-export const Home = () => {
+const Home = ({ navigation }: HomeProps) => {
   const [allLogins, setAllLogins] = useState<Logins[]>([]);
   const [carregando, setCarregando] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [allBooks, setAllBooks] = useState<Books[]>([]);
   const [searchWord, setSearchWord] = useState("");
+  const [id, setId] = useState("");
 
   const getLogin = async () => {
     setCarregando(true);
@@ -28,6 +35,27 @@ export const Home = () => {
     }
     setCarregando(false);
   };
+
+  const getbooks = async () => {
+    setLoading(true);
+    try {
+      const books = await getAllBooks();
+      setAllBooks(books);
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
+  const handleDetalhes = (bookId: string) => {
+    navigation.navigate("DetalheProduto", { id: bookId });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      getbooks();
+    }, [])
+  );
 
   useEffect(() => {
     getLogin();
@@ -50,10 +78,10 @@ export const Home = () => {
     );
   }
 
-  const filterBooks = (item: { title: string }) => {
+  const filterBooks = (item: { nome: string }) => {
     if (searchWord === "") {
       return true;
-    } else if (item.title.toLowerCase().includes(searchWord.toLowerCase())) {
+    } else if (item.nome.toLowerCase().includes(searchWord.toLowerCase())) {
       return true;
     }
     return false;
@@ -85,11 +113,18 @@ export const Home = () => {
         />
       </View>
       <FlatList
-        data={TitulosLivros.filter(filterBooks)}
+        data={allBooks.filter(filterBooks)}
         numColumns={3}
         renderItem={({ item }) => (
           <View style={homeStyles.itemContainer}>
-            <Image source={{ uri: item.image }} style={homeStyles.livroImage} />
+            <TouchableOpacity
+            onPress={() => handleDetalhes(item.id)}>
+              <Image
+                source={{ uri: item.imagem }}
+                style={homeStyles.livroImage}
+              />
+              <Text style={homeStyles.textPrecoLivro}>{item.preco}</Text>
+            </TouchableOpacity>
           </View>
         )}
         keyExtractor={(item) => item.id}
