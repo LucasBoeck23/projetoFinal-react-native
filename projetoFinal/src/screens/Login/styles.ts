@@ -18,11 +18,11 @@ import { StyleSheet } from "react-native";
       justifyContent: "space-around",
       width: "100%",
       gap: 25,
-      paddingTop:30
+      paddingTop: "10%"
     },
     icone: {
-      width: 80,
-      top: 10
+      width: "20%",
+      top: "1%"
     },
     botaoContainer: {
       flexDirection: "row",
@@ -73,11 +73,11 @@ import { StyleSheet } from "react-native";
     titulo: {
       fontSize: 50,
       fontFamily: "Poppins-Bold",
-      bottom: 15,
+      bottom: "5%",
     },
     textoBoasVindasContainer: {
       flexDirection: "row",
-      bottom: 30,
+      bottom: "6%",
       color: "#012E43",
     },
     textoBoasVindas: {
@@ -111,7 +111,8 @@ import { StyleSheet } from "react-native";
       top: 10,
     },
     desenhoInferior:{
-      width:"70%",
+      width:"65%",
       alignSelf:"flex-start",
+      top: "1%"
   }
   });

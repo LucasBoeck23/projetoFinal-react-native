@@ -1,11 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./screens/Login/index";
-import { Autores } from "./screens/Autores";
-import { Home } from "./screens/Home";
+import Login from "../screens/Login/index";
+import { Autores } from "../screens/Autores";
+import { Home } from "../screens/Home";
 import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Entypo, Feather } from "@expo/vector-icons";
-import { Adicionar } from "./screens/Adicionar";
+import { Adicionar } from "../screens/Adicionar";
+import { DetalheProduto } from "../screens/DetalheProduto";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +53,7 @@ const MyTabs = () => {
 
       <Tab.Screen
         name="Autores"
-        component={Autores}
+        component={DetalheProduto}
         options={{
           tabBarIcon: ({ size }) => (
             <Feather name="user" size={size} color={"white"} />

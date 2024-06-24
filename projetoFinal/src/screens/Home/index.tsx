@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   FlatList
 } from "react-native";
-import { getAllLogins } from "../../services/LoginService";
+import { getAllLogins } from "../../services/Login/LoginService";
 import { Logins } from "../../types";
 
 

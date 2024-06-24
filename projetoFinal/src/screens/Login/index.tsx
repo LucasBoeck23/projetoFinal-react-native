@@ -12,14 +12,14 @@ import { styles } from "./styles";
 import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { getAllLogins, postNewLogin } from "../../services/LoginService";
-import { Logins } from "../../types";
+import { getAllLogins, postNewLogin } from "../../services/Login/LoginService";
+import { Logins } from "../../routes/types";
 
 export const Login = () => {
-  const icone = require("../../../../assets/image/IconeApp.png");
-  const Logo = require("../../../../assets/image/LogoApp.png");
-  const botao = require("../../../../assets/image/BotaoEntrar.png");
-  const desenhoInferior = require("../../../../assets/image/FundoCantoEsq.png");
+  const icone = require("../../../assets/image/IconeApp.png");
+  const Logo = require("../../../assets/image/LogoApp.png");
+  const botao = require("../../../assets/image/BotaoEntrar.png");
+  const desenhoInferior = require("../../../assets/image/FundoCantoEsq.png");
 
   const navigation = useNavigation();
 
@@ -28,8 +28,8 @@ export const Login = () => {
   };
 
   const [fontsLoaded] = useFonts({
-    "Poppins-SemiBold": require("../../../../assets/fonts/Poppins-SemiBold.ttf"),
-    "Poppins-Bold": require("../../../../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
 
   const [email, setEmail] = useState("");
