@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { style } from "./styles";
-import { getAllBooks } from "../../services/Books/booksService";
+import { getAllBooks, postNewBook } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import api from "../../services/Books/apiBook";
 import { ModalComponent } from "../Modals/ModalComponent";
@@ -77,7 +77,7 @@ const voltarPagina = () => {
       newBook.sinopse
     ) {
       try {
-        const { data } = await api.post("/livros", newBook);
+        const  data  = await postNewBook(newBook);
         setAllBooks([...allBooks, data]);
         console.log(data);
         setNome("");
@@ -144,7 +144,7 @@ const voltarPagina = () => {
            onChangeText={setAutor}/>
           </View>
           <View style={style.containerBotao}>
-            <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={() => postBook()}>
+            <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={postBook}>
               <Text style={style.buttonText}> Criar Produto </Text>
             </TouchableOpacity>
           </View>
@@ -220,7 +220,6 @@ const voltarPagina = () => {
         </View>
       </View>
     </View>
-  <ModalComponent visible={modalVisible} onRequestClose={editar}/>
 </ScrollView>
 );
 };

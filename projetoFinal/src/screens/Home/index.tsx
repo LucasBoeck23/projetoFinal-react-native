@@ -17,23 +17,12 @@ import { Books } from "../../types/types";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 export const Home = ({navigation}: any ) => {
-  const [allLogins, setAllLogins] = useState<Logins[]>([]);
-  const [carregando, setCarregando] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [allBooks, setAllBooks] = useState<Books[]>([]);
   const [searchWord, setSearchWord] = useState("");
   const [id, setId] = useState("");
 
-  const getLogin = async () => {
-    setCarregando(true);
-    try {
-      const logins = await getAllLogins();
-      setAllLogins(logins);
-    } catch (error) {
-      console.log(error);
-    }
-    setCarregando(false);
-  };
+
 
   const getbooks = async () => {
     setLoading(true);
@@ -56,10 +45,6 @@ export const Home = ({navigation}: any ) => {
     }, [])
   );
 
-  useEffect(() => {
-    getLogin();
-  }, []);
-
   const [fontsLoaded] = useFonts({
     "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
@@ -69,7 +54,7 @@ export const Home = ({navigation}: any ) => {
     return null;
   }
 
-  if (carregando) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size={"large"} />

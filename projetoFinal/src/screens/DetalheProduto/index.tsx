@@ -10,11 +10,12 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { useFonts } from "expo-font";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ModalComponent } from "../Modals/ModalComponent";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Books } from "../../types/types";
-import { DetalhesProp } from "../../routes/stack";
+import api from "../../services/Books/apiBook";
+import { getAllBooks, updateLivro } from "../../services/Books/booksService";
 
 const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
 const Lixeira = require("../../../assets/icons/Lixeira.png");
@@ -30,22 +31,41 @@ interface DetalhesProp {
 }
 
 export const DetalheProduto = ({route}:DetalhesProp) => {
-  const {livro} = route.params
-
-
+  const [livro,setLivro] = useState(route.params.livro)
+  const navigation = useNavigation()
+  const [modalVisible, setModalVisible] = useState(false);
+  
   const [fontsLoaded] = useFonts({
     "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
-const navigation = useNavigation()
 
 const voltarPagina = () => {
   navigation.goBack()
 }
-
-  const [modalVisible, setModalVisible] = useState(false);
-
   const editar = () => { setModalVisible(!modalVisible)}
+
+  const deleteLivro = async (id:string) =>{
+    try {
+      const { data } = await api.delete(`/livros/${id}`)
+      console.log(data)
+      voltarPagina()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const salvarEdicao = async (livroEditado: Books) => {
+    try {
+      const data  = await updateLivro(livro.id, livroEditado);
+    if(data){
+      setLivro(livroEditado)
+    }
+      setModalVisible(false);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
 
   return (
     <ScrollView style={style.container}>
@@ -58,13 +78,15 @@ const voltarPagina = () => {
               </TouchableOpacity>
             </View>
             <View style={style.containerApagar}>
+              <TouchableOpacity onPress={() => deleteLivro(livro.id)}>
               <Image source={Lixeira} style={style.IconeLixeira} />
+              </TouchableOpacity>
             </View>
           </View>
           <View style={style.bookContainer}>
             <View style={style.bookImgContainer}>
             {livro.imagem  ? (
-              <Image source={{ uri: livro.imagem }} style={style.bookImg} />
+              <Image source={{ uri: livro.imagem }} style={[style.bookImg,{zIndex:1}]} />
             ) : (
               <Image source={require("../../../assets/image/LivroImprovisado.png")} style={style.bookImg} />
             )}
@@ -125,7 +147,8 @@ const voltarPagina = () => {
             </View>
           </View>
         </View>
-      <ModalComponent visible={modalVisible} onRequestClose={editar}/>
+      <ModalComponent visible={modalVisible} onRequestClose={editar}  livro={livro}
+        onSave={salvarEdicao} />
     </ScrollView>
   );
 };
@@ -178,7 +201,7 @@ const style = StyleSheet.create({
     marginTop: "10%",
     height: "90%",
     width: "90%",
-    zIndex: 1,
+    zIndex: 2,
   },
   bookImgContainer: {
     flex: 1.2,
@@ -194,7 +217,8 @@ const style = StyleSheet.create({
     height:"100%",
     width:"100%",
     borderRadius:10,
-    right:10
+    right:10,
+    
   },
   containerNomeLivro: {
     flex: 2,
