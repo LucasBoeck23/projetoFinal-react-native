@@ -7,7 +7,7 @@ export type Books ={
     preco: string;
     qntpaginas: string;
     imagem: string;
-    sinapse: string;
+    sinopse: string;
   };
 
   export interface ModalEditar {
@@ -15,9 +15,18 @@ export type Books ={
     onRequestClose: () => void
   }
 
-  
+
 export type Logins = {
   "id" : string;
   "email":string;
   "password":string;
+}
+
+export type StackNavigation ={
+  Home: undefined
+  Login: undefined
+  MyTabs: undefined
+  DetalheProduto:{ Book:Books }
+  Adicionar: undefined
+  Autores: undefined
 }

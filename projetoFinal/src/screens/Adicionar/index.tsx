@@ -15,6 +15,7 @@ import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import api from "../../services/Books/apiBook";
 import { ModalComponent } from "../Modals/ModalComponent";
+import { useNavigation } from "@react-navigation/native";
 
 export const Adicionar = () => {
   const [allBooks, setAllBooks] = useState<Books[]>([]);
@@ -48,6 +49,11 @@ export const Adicionar = () => {
     }
     setLoading(false);
   };
+
+  const navigation= useNavigation()
+const voltarPagina = () => {
+  navigation.goBack()
+}
 
   const postBook = async () => {
     const newBook = {
@@ -107,13 +113,19 @@ export const Adicionar = () => {
     <View style={style.containerAzul}>
       <View style={style.header}>
         <View style={style.goBack}>
+          <TouchableOpacity style={{flexDirection:"row"}} onPress={voltarPagina}>
           <Image source={SetaVoltar} style={style.IconeVoltar} />
           <Text style={style.minhaLoja}> Minha Loja</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={style.bookContainer}>
         <View style={style.bookImgContainer}>
-          <Image source={LivroImprovisado} style={style.bookImg} />
+        {imagem ? (
+              <Image source={{ uri: imagem }} style={style.bookImg} />
+            ) : (
+              <Image source={require("../../../assets/image/LivroImprovisado.png")} style={style.bookImg} />
+            )}
         </View>
         <View style={style.bookInfoContainer}>
           <View style={style.containerNomeLivro}>
@@ -121,6 +133,7 @@ export const Adicionar = () => {
            placeholder="Nome do Livro"
            placeholderTextColor={"white"}
            value={nome}
+           multiline
            onChangeText={setNome}/>
           </View>
           <View style={style.containerAutorLivro}>
@@ -131,8 +144,8 @@ export const Adicionar = () => {
            onChangeText={setAutor}/>
           </View>
           <View style={style.containerBotao}>
-            <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={editar}>
-              <Text style={style.buttonText}>Editar Produto</Text>
+            <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={() => postBook()}>
+              <Text style={style.buttonText}> Criar Produto </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -154,27 +167,54 @@ export const Adicionar = () => {
           <View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Nome do Livro: </Text>
-              <Text style={style.detailText}>Informações </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="Nome"
+            value={nome}
+            />
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Autor(a): </Text>
-              <Text style={style.detailText}>Informações </Text>
+              <Text style={style.detailText}> {autor} </Text>
             </View >
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Editora: </Text>
-              <Text style={style.detailText}>Informações </Text>
+            <TextInput style={style.infoTitle}
+            placeholder="editora"
+            value={editora}
+            onChangeText={setEditora}
+            />
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Categoria: </Text>
-              <Text style={style.detailText}>Informações </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="categoria"
+            value={categoria}
+            onChangeText={setCategoria}
+            />
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Preço: </Text>
-              <Text style={style.detailText}>Informações </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="preço"
+            value={preco}
+            onChangeText={setPreco}
+            />
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
-              <Text style={style.detailText}>Informações </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="Quantidade de páginas"
+            value={paginas}
+            onChangeText={setPaginas}
+            />
+            </View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Url da capa: </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="Url"
+            value={imagem}
+            onChangeText={setImagem}
+            />
             </View>
           </View>
         </View>

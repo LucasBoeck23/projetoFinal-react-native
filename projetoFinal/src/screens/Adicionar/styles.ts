@@ -56,20 +56,26 @@ import { StyleSheet } from "react-native";
       alignItems: "center",
     },
     bookInfoContainer: {
-      marginTop: "8%",
-      flex: 1.5,
+      flex: 1.8,
+      marginLeft:"1%",
       height: "80%",
       alignSelf: "center",
     },
-    bookImg: {},
+    bookImg: {
+    height:"100%",
+    width:"100%",
+    borderRadius:10,
+    right:10
+    },
     containerNomeLivro: {
       flex: 2,
+    
     },
     inputNomeLivro: {
       fontFamily: "Poppins-SemiBold",
       color: "#F5FFFA",
       fontSize: 20,
-      height:30,
+      height:60,
       justifyContent:"center"
     },
     containerAutorLivro: {
@@ -82,9 +88,10 @@ import { StyleSheet } from "react-native";
     },
     containerBotao: {
       flex: 2,
+      height:40,
       justifyContent: "flex-end",
       alignItems: "center",
-      paddingBottom: 30,
+      marginTop:20
     },
     button: {
       borderRadius: 20,
@@ -114,7 +121,7 @@ import { StyleSheet } from "react-native";
     },
     infoRow:{
       flexDirection: "row",
-      alignItems: "flex-end",
+      alignItems: "center",
       marginBottom: "2%"
     },
     inputDetailText: {

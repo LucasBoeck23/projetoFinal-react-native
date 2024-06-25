@@ -14,9 +14,9 @@ import { useFonts } from "expo-font";
 import { homeStyles } from "./HomeStyles";
 import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
-export const Home = () => {
+export const Home = ({navigation}: any ) => {
   const [allLogins, setAllLogins] = useState<Logins[]>([]);
   const [carregando, setCarregando] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -46,9 +46,9 @@ export const Home = () => {
     setLoading(false);
   };
 
-  // const handleDetalhes = (bookId: string) => {
-  //   navigation.navigate("DetalheProduto", { id: bookId });
-  // };
+  const handleDetalhes = (livro: Books) => {
+    navigation.navigate("DetalheProduto", {livro});
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -117,8 +117,8 @@ export const Home = () => {
         renderItem={({ item }) => (
           <View style={homeStyles.itemContainer}>
             <TouchableOpacity
-            // onPress={() => 
-            // handleDetalhes(item.id)}
+            onPress={() =>
+            handleDetalhes(item)}
             >
               <Image
                 source={{ uri: item.imagem }}

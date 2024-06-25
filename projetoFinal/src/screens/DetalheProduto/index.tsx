@@ -12,16 +12,36 @@ import {
 import { useFonts } from "expo-font";
 import { useState } from "react";
 import { ModalComponent } from "../Modals/ModalComponent";
+import { useNavigation } from "@react-navigation/native";
+import { Books } from "../../types/types";
+import { DetalhesProp } from "../../routes/stack";
 
 const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
 const Lixeira = require("../../../assets/icons/Lixeira.png");
 const LivroImprovisado = require("../../../assets/image/LivroImprovisado.png");
 
-export const DetalheProduto = () => {
+
+interface DetalhesProp {
+  route: {
+    params: {
+      livro: Books;
+    };
+  };
+}
+
+export const DetalheProduto = ({route}:DetalhesProp) => {
+  const {livro} = route.params
+
+
   const [fontsLoaded] = useFonts({
     "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
+const navigation = useNavigation()
+
+const voltarPagina = () => {
+  navigation.goBack()
+}
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -32,8 +52,10 @@ export const DetalheProduto = () => {
         <View style={style.containerAzul}>
           <View style={style.header}>
             <View style={style.goBack}>
+              <TouchableOpacity style={{flexDirection:"row"}} onPress={voltarPagina}>
               <Image source={SetaVoltar} style={style.IconeVoltar} />
               <Text style={style.minhaLoja}> Minha Loja</Text>
+              </TouchableOpacity>
             </View>
             <View style={style.containerApagar}>
               <Image source={Lixeira} style={style.IconeLixeira} />
@@ -41,16 +63,20 @@ export const DetalheProduto = () => {
           </View>
           <View style={style.bookContainer}>
             <View style={style.bookImgContainer}>
-              <Image source={LivroImprovisado} style={style.bookImg} />
+            {livro.imagem  ? (
+              <Image source={{ uri: livro.imagem }} style={style.bookImg} />
+            ) : (
+              <Image source={require("../../../assets/image/LivroImprovisado.png")} style={style.bookImg} />
+            )}
             </View>
             <View style={style.bookInfoContainer}>
               <View style={style.containerNomeLivro}>
                 <Text style={style.textNomeLivro}>
-                  O nome do livro fica bem aqui!
+                 {livro.nome}
                 </Text>
               </View>
               <View style={style.containerAutorLivro}>
-                <Text style={style.textAutorLivro}>Autor(a) aqui</Text>
+                <Text style={style.textAutorLivro}>{livro.autor}</Text>
               </View>
               <View style={style.containerBotao}>
                 <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={editar}>
@@ -65,41 +91,35 @@ export const DetalheProduto = () => {
             <View>
               <Text style={style.detailTitle}>Sinopse</Text>
               <Text style={style.detailText}>
-                A magia há muito abandonou Adarlan. Um perverso rei governa,
-                punindo impiedosamente as minorias rebeldes. Mas tudo pode mudar
-                quando uma assassina é chamada para o castelo. Em Trono de
-                vidro, livro que da início a série bestseller com mais de um
-                milhão de cópias vendidas e legiões de fãs no mundo todo,
-                Celaena tem uma perigosa missão que pode lhe garantir sua tão
-                sonhada liberdade ou ser a sua sentença de morte.
+               {livro.sinopse}
               </Text>
             </View>
             <View>
               <Text style={style.detailTitle}>Informações</Text>
               <View>
                 <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Nome do Livro:</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.infoTitle}>Nome do Livro: </Text>
+                  <Text style={style.detailText}>{livro.nome} </Text>
                 </View>
                 <View style={style.infoRow}>
                   <Text style={style.infoTitle}>Autor(a):</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.detailText}>{livro.autor} </Text>
                 </View >
                 <View style={style.infoRow}>
                   <Text style={style.infoTitle}>Editora:</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.detailText}>{livro.editora} </Text>
                 </View>
                 <View style={style.infoRow}>
                   <Text style={style.infoTitle}>Categoria:</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.detailText}>{livro.categoria} </Text>
                 </View>
                 <View style={style.infoRow}>
                   <Text style={style.infoTitle}>Preço:</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.detailText}>{livro.preco} </Text>
                 </View>
                 <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Quantidade de Páginas:</Text>
-                  <Text style={style.detailText}>Informações</Text>
+                  <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
+                  <Text style={style.detailText}>{livro.qntpaginas} </Text>
                 </View>
               </View>
             </View>
@@ -166,12 +186,16 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
   bookInfoContainer: {
-    marginTop: "8%",
     flex: 1.5,
     height: "80%",
     alignSelf: "center",
   },
-  bookImg: {},
+  bookImg: {
+    height:"100%",
+    width:"100%",
+    borderRadius:10,
+    right:10
+  },
   containerNomeLivro: {
     flex: 2,
   },
@@ -190,9 +214,10 @@ const style = StyleSheet.create({
   },
   containerBotao: {
     flex: 2,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    paddingBottom: 30,
+      height:40,
+      justifyContent: "flex-end",
+      alignItems: "center",
+      marginTop:20
   },
   button: {
     borderRadius: 20,

@@ -24,7 +24,7 @@ export const Login = () => {
   const navigation = useNavigation();
 
   const navigateApp = () => {
-    navigation.navigate("Main");
+    navigation.navigate("MyTabs");
   };
 
   const [fontsLoaded] = useFonts({
