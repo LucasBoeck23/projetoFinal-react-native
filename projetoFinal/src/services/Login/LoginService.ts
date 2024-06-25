@@ -1,4 +1,4 @@
-import { Logins } from "../../routes/types";
+
 import api from "./apiLogin";
 
 export const getAllLogins = async () =>{
