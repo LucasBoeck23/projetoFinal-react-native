@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login/index";
-import { Autores } from "../screens/Autores";
+import { Autorespage } from "../screens/Autores";
 import { Home } from "../screens/Home";
 import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Entypo, Feather } from "@expo/vector-icons";
@@ -60,7 +60,7 @@ const MyTabs = () => {
 
       <Tab.Screen
         name="Autores"
-        component={Autores}
+        component={Autorespage}
         options={{
           tabBarIcon: ({ size }) => (
             <Feather name="user" size={size} color={"white"} />
