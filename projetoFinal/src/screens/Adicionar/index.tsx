@@ -7,11 +7,14 @@ import {
   ActivityIndicator,
   TextInput,
   Image,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
-import { styles } from "./styles";
+import { style } from "./styles";
 import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import api from "../../services/Books/apiBook";
+import { ModalComponent } from "../Modals/ModalComponent";
 
 export const Adicionar = () => {
   const [allBooks, setAllBooks] = useState<Books[]>([]);
@@ -24,6 +27,16 @@ export const Adicionar = () => {
   const [paginas, setPaginas] = useState("");
   const [imagem, setImagem] = useState("");
   const [sinopse, setSinopse] = useState("");
+
+
+  const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
+  const Lixeira = require("../../../assets/icons/Lixeira.png");
+  const LivroImprovisado = require("../../../assets/image/LivroImprovisado.png");
+
+  
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const editar = () => { setModalVisible(!modalVisible)}
 
   const getbooks = async () => {
     setLoading(true);
@@ -90,65 +103,84 @@ export const Adicionar = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text> adicionar </Text>
-      {/* <Button title="obter dados" onPress={getbooks} disabled={isLoading} /> */}
-      <View>
-        <TextInput
-          placeholder="Nome do Livro"
-          value={nome}
-          onChangeText={setNome}
-        />
-        <TextInput
-          placeholder="Nome do(a) Autor(a)"
-          value={autor}
-          onChangeText={setAutor}
-        />
-        <TextInput
-          placeholder="Nome da Editora"
-          value={editora}
-          onChangeText={setEditora}
-        />
-        <TextInput
-          placeholder="Categoria do Livro"
-          value={categoria}
-          onChangeText={setCategoria}
-        />
-        <TextInput
-          placeholder="Preço do Livro"
-          value={preco}
-          onChangeText={setPreco}
-        />
-        <TextInput
-          placeholder="Quantidade de Páginas"
-          value={paginas}
-          onChangeText={setPaginas}
-        />
-        <TextInput
-          placeholder="Imagem"
-          value={imagem}
-          onChangeText={setImagem}
-        />
-        <TextInput
-          placeholder="Sinopse"
-          value={sinopse}
-          onChangeText={setSinopse}
-        />
-        <Button title="Cadastrar Livro" onPress={postBook} />
+    <ScrollView style={style.container}>
+    <View style={style.containerAzul}>
+      <View style={style.header}>
+        <View style={style.goBack}>
+          <Image source={SetaVoltar} style={style.IconeVoltar} />
+          <Text style={style.minhaLoja}> Minha Loja</Text>
+        </View>
       </View>
-      <FlatList
-        data={allBooks}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View>
-            <Image
-              source={{ uri: item.imagem }}
-              style={{ width: 100, height: 150 }}
-            />
-            <Text>{item.nome}</Text>
+      <View style={style.bookContainer}>
+        <View style={style.bookImgContainer}>
+          <Image source={LivroImprovisado} style={style.bookImg} />
+        </View>
+        <View style={style.bookInfoContainer}>
+          <View style={style.containerNomeLivro}>
+           <TextInput style={style.inputNomeLivro}
+           placeholder="Nome do Livro"
+           placeholderTextColor={"white"}
+           value={nome}
+           onChangeText={setNome}/>
           </View>
-        )}
-      />
+          <View style={style.containerAutorLivro}>
+          <TextInput style={style.inputAutorLivro}
+           placeholder="Autor(a)"
+           placeholderTextColor={"#012E43"}
+           value={autor}
+           onChangeText={setAutor}/>
+          </View>
+          <View style={style.containerBotao}>
+            <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={editar}>
+              <Text style={style.buttonText}>Editar Produto</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
-  );
+    <View style={style.containerBranco}>
+      <View style={style.detailContainer}>
+        <View>
+          <Text style={style.detailTitle}>Sinopse</Text>
+          <TextInput style={style.inputDetailText}
+           placeholder="Escreva sua sinopse"
+           placeholderTextColor={"#7A7A7A"}
+           value={sinopse}
+           multiline
+           onChangeText={setSinopse}/>
+        </View>
+        <View>
+          <Text style={style.detailTitle}>Informações</Text>
+          <View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Nome do Livro: </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Autor(a): </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View >
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Editora: </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Categoria: </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Preço: </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View>
+            <View style={style.infoRow}>
+              <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
+              <Text style={style.detailText}>Informações </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  <ModalComponent visible={modalVisible} onRequestClose={editar}/>
+</ScrollView>
+);
 };

@@ -8,7 +8,6 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { HomeProps } from "../../routes/stack";
 import { getAllLogins } from "../../services/Login/LoginService";
 import { Logins } from "../../../src/types/types";
 import { useFonts } from "expo-font";
@@ -17,7 +16,7 @@ import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import { useFocusEffect } from "@react-navigation/native";
 
-const Home = ({ navigation }: HomeProps) => {
+export const Home = () => {
   const [allLogins, setAllLogins] = useState<Logins[]>([]);
   const [carregando, setCarregando] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -47,9 +46,9 @@ const Home = ({ navigation }: HomeProps) => {
     setLoading(false);
   };
 
-  const handleDetalhes = (bookId: string) => {
-    navigation.navigate("DetalheProduto", { id: bookId });
-  };
+  // const handleDetalhes = (bookId: string) => {
+  //   navigation.navigate("DetalheProduto", { id: bookId });
+  // };
 
   useFocusEffect(
     useCallback(() => {
@@ -118,7 +117,9 @@ const Home = ({ navigation }: HomeProps) => {
         renderItem={({ item }) => (
           <View style={homeStyles.itemContainer}>
             <TouchableOpacity
-            onPress={() => handleDetalhes(item.id)}>
+            // onPress={() => 
+            // handleDetalhes(item.id)}
+            >
               <Image
                 source={{ uri: item.imagem }}
                 style={homeStyles.livroImage}
