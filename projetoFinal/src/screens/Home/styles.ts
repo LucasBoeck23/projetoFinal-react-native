@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   statusbar: {
+    position: "static",
     height: "18%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -13,31 +14,34 @@ export const styles = StyleSheet.create({
     paddingHorizontal: "5%",
   },
   textContainer: {
+    height: "65%",
+    width: "70%",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: "2%",
+    paddingTop: "6%",
+    justifyContent: "space-evenly",
   },
   imagem: {
     marginTop: "5%",
-    width: "28%",
-    height: "68%",
+    width: "22%",
+    height: "48%",
   },
   titulo: {
     color: "#000000",
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: "Poppins-Bold",
   },
   containerPesquisa: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: "2%",
-    width: "112%",
-    height: "32%",
+    width: "100%",
+    height: "38%",
     borderWidth: 1,
     borderRadius: 20,
-    backgroundColor: "#ffffff",
     borderColor: "#000000",
     paddingHorizontal: "5%",
+    backgroundColor: "#F5FFFA",
   },
   iconLupa: {
     width: 20,
@@ -56,8 +60,8 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   vitrineContainer: {
-   alignItems:"center",
-   paddingBottom: "10%"
+    alignItems: "center",
+    top: "5%",
     flexGrow: 1,
   },
   imgView: {
@@ -79,8 +83,8 @@ export const styles = StyleSheet.create({
     height: 50,
     width: 110,
   },
-  flatlist:{
-    flex:1,
-    flexDirection:"column"
-  }
+  flatlist: {
+    flex: 1,
+    flexDirection: "column",
+  },
 });

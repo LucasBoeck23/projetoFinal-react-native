@@ -83,8 +83,8 @@ export const Home = ({ navigation }: any) => {
             />
             <TextInput
               style={styles.textInput}
-              placeholder="Pesquisa po titulos"
-              placeholderTextColor="#c8c8c8"
+              placeholder="Pesquisa por títulos"
+              placeholderTextColor="#012E43"
               onChangeText={setSearchWord}
             />
           </View>
