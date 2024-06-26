@@ -16,13 +16,11 @@ import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
-export const Home = ({navigation}: any ) => {
+export const Home = ({ navigation }: any) => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [allBooks, setAllBooks] = useState<Books[]>([]);
   const [searchWord, setSearchWord] = useState("");
   const [id, setId] = useState("");
-
-
 
   const getbooks = async () => {
     setLoading(true);
@@ -36,7 +34,7 @@ export const Home = ({navigation}: any ) => {
   };
 
   const handleDetalhes = (livro: Books) => {
-    navigation.navigate("DetalheProduto", {livro});
+    navigation.navigate("DetalheProduto", { livro });
   };
 
   useFocusEffect(
@@ -101,14 +99,19 @@ export const Home = ({navigation}: any ) => {
         numColumns={3}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => handleDetalhes(item)}>
-              <Image
-                source={{ uri: item.imagem }}
-                style={styles.livroImage}
-              />
+            <TouchableOpacity
+              onPress={() => handleDetalhes(item)}
+            >
+              <View style={styles.imgView}>
+                <Image
+                  source={{ uri: item.imagem }}
+                  style={styles.livroImage}
+                />
+              </View>
               <Text style={styles.textPrecoLivro}>{item.nome}</Text>
               <Text style={styles.textPrecoLivro}>
-                <Text>R$ </Text>{item.preco}
+                <Text>R$ </Text>
+                {item.preco}
               </Text>
             </TouchableOpacity>
           </View>
@@ -117,7 +120,7 @@ export const Home = ({navigation}: any ) => {
         contentContainerStyle={styles.vitrineContainer}
       />
     </View>
-    );
-  };
+  );
+};
 
-  export default Home
+export default Home;

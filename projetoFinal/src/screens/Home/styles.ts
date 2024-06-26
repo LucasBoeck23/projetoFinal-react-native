@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   containerMain: {
     flex: 1,
-
   },
   statusbar: {
     height: "18%",
@@ -49,27 +48,27 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
   },
-  itemContainer: {
-    alignItems: "center",
 
+  itemContainer: {
+
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    margin: 5
   },
   vitrineContainer: {
-    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    gap: 10
   },
-  livroImage: {
-    width: 80,
-    height: 120,
-    marginTop: "15%",
-    marginLeft: "8%",
-  },
+  imgView: {},
+  livroImage: {},
   
   textPrecoLivro: {
     color: "#6495ED",
     fontSize: 14,
     fontFamily: "Poppins-Bold",
     textAlign: "center",
-    borderStyle: "solid",
-    borderColor: "red",
-    borderWidth: 2,
+    flexWrap: "wrap",
   },
 });
