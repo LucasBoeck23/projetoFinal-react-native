@@ -99,16 +99,20 @@ export const Home = ({ navigation }: any) => {
         numColumns={3}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
-            <TouchableOpacity
-              onPress={() => handleDetalhes(item)}
-            >
+            <TouchableOpacity onPress={() => handleDetalhes(item)}>
               <View style={styles.imgView}>
                 <Image
                   source={{ uri: item.imagem }}
                   style={styles.livroImage}
                 />
               </View>
-              <Text style={styles.textPrecoLivro}>{item.nome}</Text>
+              <Text
+                style={styles.textPrecoLivro}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                {item.nome}
+              </Text>
               <Text style={styles.textPrecoLivro}>
                 <Text>R$ </Text>
                 {item.preco}

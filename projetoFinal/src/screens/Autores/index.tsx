@@ -1,13 +1,17 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
-
 import Logo from "./../../../assets/image/Logo.png";
 import Alexandre from "./../../../assets/image/AlexandreIcon.png";
 import Ana from "./../../../assets/image/AnaIcon.png";
 import Boeck from "./../../../assets/image/BoeckIcon.png";
 import Enzo from "./../../../assets/image/EnzoIcon.png";
 import Madu from "./../../../assets/image/MaduIcon.png";
+import { useFonts } from "expo-font";
 const Autorespage = () => {
+  const [fontsLoaded] = useFonts({
+    "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
+  });
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -36,7 +40,7 @@ const Autorespage = () => {
           </View>
         </View>
         <View style={styles.fileira}>
-        <View style={styles.containerAutores}>
+          <View style={styles.containerAutores}>
             <Image source={Madu} style={styles.foto}></Image>
             <Text style={styles.autores}> Maria Eduarda </Text>
           </View>
@@ -56,9 +60,9 @@ export const styles = StyleSheet.create({
     flex: 0.15,
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "red",
+    backgroundColor: "#6495ED",
     flexDirection: "row",
-    paddingTop:10
+    paddingTop: 10,
   },
   content: {
     flex: 0.77,
@@ -70,6 +74,7 @@ export const styles = StyleSheet.create({
   },
   TextoLogo: {
     fontSize: 30,
+    fontFamily: "Poppins-SemiBold",
   },
   containerAutores: {
     alignItems: "center",
@@ -83,13 +88,14 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   autores: {
-    top:10,
+    fontFamily: "Poppins-SemiBold",
+    top: 10,
     fontSize: 15,
   },
   fileira: {
     flexDirection: "row",
     flex: 0.3,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

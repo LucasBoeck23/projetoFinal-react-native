@@ -50,25 +50,33 @@ export const styles = StyleSheet.create({
   },
 
   itemContainer: {
-
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
-    margin: 5
+    margin: 5,
   },
   vitrineContainer: {
     flex: 1,
-    alignItems: "center",
-    gap: 10
+
+    left: "6.5%",
   },
-  imgView: {},
-  livroImage: {},
-  
+  imgView: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  livroImage: {
+    width: 100,
+    height: 140,
+    borderRadius: 10,
+  },
+
   textPrecoLivro: {
-    color: "#6495ED",
+    color: "#012E43",
     fontSize: 14,
-    fontFamily: "Poppins-Bold",
+    fontFamily: "Poppins-SemiBold",
     textAlign: "center",
     flexWrap: "wrap",
+    height: 50,
+    width: 110,
   },
 });
