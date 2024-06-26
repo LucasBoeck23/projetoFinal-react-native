@@ -56,9 +56,7 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   vitrineContainer: {
-    flex: 1,
-
-    left: "6.5%",
+   alignItems:"center"
   },
   imgView: {
     justifyContent: "center",
@@ -79,4 +77,8 @@ export const styles = StyleSheet.create({
     height: 50,
     width: 110,
   },
+  flatlist:{
+    flex:1,
+    flexDirection:"column"
+  }
 });

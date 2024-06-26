@@ -97,6 +97,7 @@ export const Home = ({ navigation }: any) => {
       <FlatList
         data={allBooks.filter(filterBooks)}
         numColumns={3}
+        style={styles.flatlist}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => handleDetalhes(item)}>
