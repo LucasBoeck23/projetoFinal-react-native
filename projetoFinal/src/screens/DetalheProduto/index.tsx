@@ -4,23 +4,19 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  SafeAreaView,
   ScrollView,
-  StatusBar,
-  KeyboardAvoidingView,
 } from "react-native";
 import { useFonts } from "expo-font";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { ModalComponent } from "../Modals/ModalComponent";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Books } from "../../types/types";
-import api from "../../services/Books/apiBook";
-import { getAllBooks, updateLivro } from "../../services/Books/booksService";
+import { updateLivro } from "../../services/Books/booksService";
+import DeleteModal from "../Modals/DeleteModal";
 
 const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
 const Lixeira = require("../../../assets/icons/Lixeira.png");
 const LivroImprovisado = require("../../../assets/image/LivroImprovisado.png");
-
 
 interface DetalhesProp {
   route: {
@@ -30,125 +26,139 @@ interface DetalhesProp {
   };
 }
 
-export const DetalheProduto = ({route}:DetalhesProp) => {
-  const [livro,setLivro] = useState(route.params.livro)
-  const navigation = useNavigation()
+export const DetalheProduto = ({ route }: DetalhesProp) => {
+  const [livro, setLivro] = useState(route.params.livro);
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  
+  const [modalDelete, setModalDelete] = useState(false);
+
   const [fontsLoaded] = useFonts({
     "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
 
-const voltarPagina = () => {
-  navigation.goBack()
-}
-  const editar = () => { setModalVisible(!modalVisible)}
+  const voltarPagina = () => {
+    navigation.goBack();
+  };
+  const editar = () => {
+    setModalVisible(!modalVisible);
+  };
+  const editarDelete = () => {
+    setModalDelete(!modalDelete);
+  };
 
-  const deleteLivro = async (id:string) =>{
-    try {
-      const { data } = await api.delete(`/livros/${id}`)
-      console.log(data)
-      voltarPagina()
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const salvarEdicao = async (livroEditado: Books) => {
     try {
-      const data  = await updateLivro(livro.id, livroEditado);
-    if(data){
-      setLivro(livroEditado)
-    }
+      const data = await updateLivro(livro.id, livroEditado);
+      if (data) {
+        setLivro(livroEditado);
+      }
       setModalVisible(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
-
   return (
     <ScrollView style={style.container}>
-        <View style={style.containerAzul}>
-          <View style={style.header}>
-            <View style={style.goBack}>
-              <TouchableOpacity style={{flexDirection:"row"}} onPress={voltarPagina}>
+      <View style={style.containerAzul}>
+        <View style={style.header}>
+          <View style={style.goBack}>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={voltarPagina}
+            >
               <Image source={SetaVoltar} style={style.IconeVoltar} />
               <Text style={style.minhaLoja}> Minha Loja</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={style.containerApagar}>
-              <TouchableOpacity onPress={() => deleteLivro(livro.id)}>
+            </TouchableOpacity>
+          </View>
+          <View style={style.containerApagar}>
+            <TouchableOpacity onPress={editarDelete}>
               <Image source={Lixeira} style={style.IconeLixeira} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={style.bookContainer}>
+          <View style={style.bookImgContainer}>
+            {livro.imagem ? (
+              <Image
+                source={{ uri: livro.imagem }}
+                style={[style.bookImg, { zIndex: 1 }]}
+              />
+            ) : (
+              <Image
+                source={require("../../../assets/image/LivroImprovisado.png")}
+                style={style.bookImg}
+              />
+            )}
+          </View>
+          <View style={style.bookInfoContainer}>
+            <View style={style.containerNomeLivro}>
+              <Text style={style.textNomeLivro}>{livro.nome}</Text>
+            </View>
+            <View style={style.containerAutorLivro}>
+              <Text style={style.textAutorLivro}>{livro.autor}</Text>
+            </View>
+            <View style={style.containerBotao}>
+              <TouchableOpacity
+                activeOpacity={0.4}
+                style={style.button}
+                onPress={editar}
+              >
+                <Text style={style.buttonText}>Editar Produto</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={style.bookContainer}>
-            <View style={style.bookImgContainer}>
-            {livro.imagem  ? (
-              <Image source={{ uri: livro.imagem }} style={[style.bookImg,{zIndex:1}]} />
-            ) : (
-              <Image source={require("../../../assets/image/LivroImprovisado.png")} style={style.bookImg} />
-            )}
-            </View>
-            <View style={style.bookInfoContainer}>
-              <View style={style.containerNomeLivro}>
-                <Text style={style.textNomeLivro}>
-                 {livro.nome}
-                </Text>
+        </View>
+      </View>
+      <View style={style.containerBranco}>
+        <View style={style.detailContainer}>
+          <View>
+            <Text style={style.detailTitle}>Sinopse</Text>
+            <Text style={style.detailText}>{livro.sinopse}</Text>
+          </View>
+          <View>
+            <Text style={style.detailTitle}>Informações</Text>
+            <View>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Nome do Livro: </Text>
+                <Text style={style.detailText}>{livro.nome} </Text>
               </View>
-              <View style={style.containerAutorLivro}>
-                <Text style={style.textAutorLivro}>{livro.autor}</Text>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Autor(a):</Text>
+                <Text style={style.detailText}>{livro.autor} </Text>
               </View>
-              <View style={style.containerBotao}>
-                <TouchableOpacity activeOpacity={0.4} style={style.button} onPress={editar}>
-                  <Text style={style.buttonText}>Editar Produto</Text>
-                </TouchableOpacity>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Editora:</Text>
+                <Text style={style.detailText}>{livro.editora} </Text>
+              </View>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Categoria:</Text>
+                <Text style={style.detailText}>{livro.categoria} </Text>
+              </View>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Preço:</Text>
+                <Text style={style.detailText}>{livro.preco} </Text>
+              </View>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
+                <Text style={style.detailText}>{livro.qntpaginas} </Text>
               </View>
             </View>
           </View>
         </View>
-        <View style={style.containerBranco}>
-          <View style={style.detailContainer}>
-            <View>
-              <Text style={style.detailTitle}>Sinopse</Text>
-              <Text style={style.detailText}>
-               {livro.sinopse}
-              </Text>
-            </View>
-            <View>
-              <Text style={style.detailTitle}>Informações</Text>
-              <View>
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Nome do Livro: </Text>
-                  <Text style={style.detailText}>{livro.nome} </Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Autor(a):</Text>
-                  <Text style={style.detailText}>{livro.autor} </Text>
-                </View >
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Editora:</Text>
-                  <Text style={style.detailText}>{livro.editora} </Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Categoria:</Text>
-                  <Text style={style.detailText}>{livro.categoria} </Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Preço:</Text>
-                  <Text style={style.detailText}>{livro.preco} </Text>
-                </View>
-                <View style={style.infoRow}>
-                  <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
-                  <Text style={style.detailText}>{livro.qntpaginas} </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      <ModalComponent visible={modalVisible} onRequestClose={editar}  livro={livro}
-        onSave={salvarEdicao} />
+      </View>
+      <ModalComponent
+        visible={modalVisible}
+        onRequestClose={editar}
+        livro={livro}
+        onSave={salvarEdicao}
+      />
+      <DeleteModal
+        visible={modalDelete}
+        onRequestClose={editarDelete}
+        livro={livro}
+      />
     </ScrollView>
   );
 };
@@ -214,11 +224,10 @@ const style = StyleSheet.create({
     alignSelf: "center",
   },
   bookImg: {
-    height:"100%",
-    width:"100%",
-    borderRadius:10,
-    right:10,
-    
+    height: "100%",
+    width: "100%",
+    borderRadius: 10,
+    right: 10,
   },
   containerNomeLivro: {
     flex: 2,
@@ -238,10 +247,10 @@ const style = StyleSheet.create({
   },
   containerBotao: {
     flex: 2,
-      height:40,
-      justifyContent: "flex-end",
-      alignItems: "center",
-      marginTop:20
+    height: 40,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 20,
   },
   button: {
     borderRadius: 20,
@@ -260,7 +269,7 @@ const style = StyleSheet.create({
     marginTop: "23%",
     width: "90%",
     alignSelf: "center",
-    paddingBottom: "18%"
+    paddingBottom: "18%",
   },
   detailTitle: {
     fontFamily: "Poppins-Bold",
@@ -269,10 +278,10 @@ const style = StyleSheet.create({
     paddingBottom: "2%",
     paddingTop: "2%",
   },
-  infoRow:{
+  infoRow: {
     flexDirection: "row",
     alignItems: "flex-end",
-    marginBottom: "2%"
+    marginBottom: "2%",
   },
   detailText: {
     color: "#7A7A7A",
@@ -281,5 +290,5 @@ const style = StyleSheet.create({
   infoTitle: {
     color: "#012E43",
     fontSize: 16,
-  }
+  },
 });
