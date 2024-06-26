@@ -10,49 +10,37 @@ import Madu from "./../../../assets/image/MaduIcon.png";
 const Autorespage = () => {
   return (
     <View style={styles.container}>
-      
-      <View style={styles.barra} >
-      <View style={styles.logoContainer}>    
-       <Image source={Logo} style={{width:"90%", height:"80%"}} /> 
-      
+      <View style={styles.header}>
+        <Image source={Logo} style={styles.Logo} />
+        <Text style={styles.TextoLogo}> Autores </Text>
       </View>
-      
-        {/* { <Image source={Logo}  /> } */}
-        <Text style={styles.texto}> Autores</Text>
-        
-      </View>
-      <View style={styles.conteudo}>
-        <View style={styles.imagem}>
-          <View style={styles.ale}>
-            <Image
-            source={Alexandre}
-            style={styles.alexandre}
-            resizeMode="cover"
-          />
-          <Text>Alexandre Silveira</Text>
+      <View style={styles.content}>
+        <View style={styles.fileira}>
+          <View style={styles.containerAutores}>
+            <Image source={Alexandre} style={styles.foto}></Image>
+            <Text style={styles.autores}> Alexandre </Text>
           </View>
-          <View style={styles.aninha} >
-          <Image source={Ana} style={styles.ana} resizeMode="cover" />
-          <Text>Ana Yukari</Text>
+          <View style={styles.containerAutores}>
+            <Image source={Ana} style={styles.foto}></Image>
+            <Text style={styles.autores}> Ana Yukari </Text>
           </View>
         </View>
-
-        <View style={styles.imagem}>
-          <View style={styles.lucas} >
-          <Image source={Boeck} style={styles.boeck} resizeMode="cover" />
-          <Text>Lucas Boeck</Text>
+        <View style={styles.fileira}>
+          <View style={styles.containerAutores}>
+            <Image source={Enzo} style={styles.foto}></Image>
+            <Text style={styles.autores}> Enzo Laffont </Text>
           </View>
-          <View style={styles.enzo2} >
-          <Image source={Enzo} style={styles.enzo} resizeMode="cover" />
-          <Text>Enzo Laffront</Text>
+          <View style={styles.containerAutores}>
+            <Image source={Boeck} style={styles.foto}></Image>
+            <Text style={styles.autores}> Lucas Boeck </Text>
           </View>
         </View>
-
-        <View style={styles.madu2}>
-          <Image source={Madu} style={styles.madu} resizeMode="cover" />
-          <Text>Maria Eduarda</Text>
-        </View >
-        
+        <View style={styles.fileira}>
+        <View style={styles.containerAutores}>
+            <Image source={Madu} style={styles.foto}></Image>
+            <Text style={styles.autores}> Maria Eduarda </Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -64,91 +52,44 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  barra: {
-    height: "12%",
-    backgroundColor: "#6495ED",
-    flexDirection:"row"
-  },
-  texto: {
-    color: "white",
-    fontSize: 25,
-    flex:1.6,
-    textAlignVertical:"center",
-    top:10
-    
-    
-  },
-  imagem: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 50,
-    width: "100%",
-    alignItems: "baseline",
-    
-  },
-  logo: {
-    width: 90,
-    height: 40,
-    
-  },
-  logoContainer:{
-    flex:1,
-    alignItems:"center",
-    top:15
-  },
-  alexandre: {
-    width: "175%",
-    height: 160,
-  },
-  ana: {
-    width: "300%",
-    height: 160,
-  },
-  boeck: {
-    width: "250%",
-    height: 160,
-  },
-  enzo: {
-    width: "240%",
-    height: 160,
-  },
-  madu: {
-    marginTop: 1,
-    width: 220,
-    height: 160,
+  header: {
+    flex: 0.15,
     justifyContent: "space-evenly",
-    
-  },
-  madu2: {
     alignItems: "center",
-    justifyContent:"center",
-    bottom:40
+    backgroundColor: "red",
+    flexDirection: "row",
+    paddingTop:10
   },
-  nomes: {
+  content: {
+    flex: 0.77,
+    top: "1%",
+  },
+  Logo: {
+    width: "20%",
+    height: "100%",
+  },
+  TextoLogo: {
+    fontSize: 30,
+  },
+  containerAutores: {
     alignItems: "center",
-    justifyContent: "center",
+    height: "85%",
+    width: "55%",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
-  conteudo: {
-    flex: 1,
-    padding: 10,
-    alignItems: "center",
+  foto: {
+    width: "100%",
+    height: "100%",
   },
-  ale:{
+  autores: {
+    top:10,
+    fontSize: 15,
+  },
+  fileira: {
+    flexDirection: "row",
+    flex: 0.3,
     justifyContent:"center",
     alignItems:"center"
   },
-  aninha:{
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  enzo2:{
-    justifyContent:"center",
-    alignItems:"center",
-  },
-  lucas:{
-    justifyContent:"center",
-    alignItems:"center"
-  },
-
 });
-
