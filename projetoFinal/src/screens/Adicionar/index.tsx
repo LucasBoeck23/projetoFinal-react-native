@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
-  Button,
-  FlatList,
   ActivityIndicator,
   TextInput,
   Image,
@@ -16,6 +14,7 @@ import { Books } from "../../types/types";
 import api from "../../services/Books/apiBook";
 import { ModalComponent } from "../Modals/ModalComponent";
 import { useNavigation } from "@react-navigation/native";
+import { useFonts } from "expo-font";
 
 export const Adicionar = () => {
   const [allBooks, setAllBooks] = useState<Books[]>([]);
@@ -29,12 +28,17 @@ export const Adicionar = () => {
   const [imagem, setImagem] = useState("");
   const [sinopse, setSinopse] = useState("");
 
-
   const SetaVoltar = require("../../../assets/icons/SetaVoltar.png");
-  const Lixeira = require("../../../assets/icons/Lixeira.png");
-  const LivroImprovisado = require("../../../assets/image/LivroImprovisado.png");
 
-  
+  const [fontsLoaded] = useFonts({
+    "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+ 
   const [modalVisible, setModalVisible] = useState(false);
 
   const editar = () => { setModalVisible(!modalVisible)}
@@ -174,7 +178,11 @@ const voltarPagina = () => {
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Autor(a): </Text>
-              <Text style={style.detailText}> {autor} </Text>
+              <TextInput style={style.infoTitle}
+            placeholder="autor(a)"
+            value={autor}
+            onChangeText={setAutor}
+            />
             </View >
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Editora: </Text>

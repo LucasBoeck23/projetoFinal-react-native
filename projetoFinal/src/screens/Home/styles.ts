@@ -56,7 +56,10 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   vitrineContainer: {
-   alignItems:"center"
+    alignItems:"center",
+    flexGrow: 1,
+    left: "6.5%",
+
   },
   imgView: {
     justifyContent: "center",

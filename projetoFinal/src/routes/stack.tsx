@@ -3,8 +3,7 @@ import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-na
 import Login from "../screens/Login/index";
 import { Autorespage } from "../screens/Autores";
 import { Home } from "../screens/Home";
-import { KeyboardAvoidingView, StyleSheet } from "react-native";
-import { Entypo, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { Adicionar } from "../screens/Adicionar";
 import { DetalheProduto } from "../screens/DetalheProduto";
 import { StackNavigation } from "../types/types";
@@ -59,7 +58,7 @@ const MyTabs = () => {
       />
 
       <Tab.Screen
-        name="Autores"
+        name="Colaboradores"
         component={Autorespage}
         options={{
           tabBarIcon: ({ size }) => (

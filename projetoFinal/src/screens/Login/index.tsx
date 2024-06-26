@@ -121,7 +121,7 @@ export const Login = () => {
     <KeyboardAvoidingView
     behavior={"height"}
     style={{ flex: 1 }}
-    keyboardVerticalOffset={-100} // Ajuste esse valor conforme necessário
+    keyboardVerticalOffset={-100}
   >
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>

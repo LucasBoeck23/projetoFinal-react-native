@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
- export const style = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#6495ED",
@@ -48,7 +48,7 @@ import { StyleSheet } from "react-native";
       marginTop: "10%",
       height: "90%",
       width: "90%",
-      zIndex: 1,
+      zIndex: 2,
     },
     bookImgContainer: {
       flex: 1.2,
@@ -56,41 +56,38 @@ import { StyleSheet } from "react-native";
       alignItems: "center",
     },
     bookInfoContainer: {
-      flex: 1.8,
-      marginLeft:"1%",
+      flex: 1.5,
       height: "80%",
       alignSelf: "center",
     },
     bookImg: {
-    height:"100%",
-    width:"100%",
-    borderRadius: 10,
-    right:10
+      height: "100%",
+      width: "100%",
+      borderRadius: 10,
+      right: 10,
     },
     containerNomeLivro: {
       flex: 2,
     },
-    inputNomeLivro: {
-      fontFamily: "Poppins-SemiBold",
+    textNomeLivro: {
+      fontFamily: "Poppins-Bold",
       color: "#F5FFFA",
       fontSize: 20,
-      height:60,
-      justifyContent:"center"
     },
     containerAutorLivro: {
       flex: 1,
     },
-    inputAutorLivro: {
+    textAutorLivro: {
       fontFamily: "Poppins-SemiBold",
       color: "#012E43",
       fontSize: 14,
     },
     containerBotao: {
       flex: 2,
-      height:50,
+      height: 40,
       justifyContent: "flex-end",
       alignItems: "center",
-      marginTop:20
+      marginTop: 20,
     },
     button: {
       borderRadius: 20,
@@ -109,7 +106,7 @@ import { StyleSheet } from "react-native";
       marginTop: "23%",
       width: "90%",
       alignSelf: "center",
-      paddingBottom: "18%"
+      paddingBottom: "18%",
     },
     detailTitle: {
       fontFamily: "Poppins-Bold",
@@ -118,19 +115,18 @@ import { StyleSheet } from "react-native";
       paddingBottom: "2%",
       paddingTop: "2%",
     },
-    infoRow:{
+    infoRow: {
       flexDirection: "row",
-      alignItems: "center",
-      marginBottom: "2%"
+      alignItems: "flex-end",
+      marginBottom: "2%",
     },
-    inputDetailText: {
+    detailText: {
       color: "#7A7A7A",
       fontSize: 16,
-      maxHeight:200,
-      flexWrap:"wrap",
     },
     infoTitle: {
       color: "#012E43",
       fontSize: 16,
-    }
+    },
   });
+  
