@@ -1,4 +1,3 @@
-
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
@@ -14,7 +13,7 @@ const Autorespage = () => {
       
       <View style={styles.barra} >
       <View style={styles.logoContainer}>    
-       <Image source={Logo} style={{width:"110%", height:"80%"}} /> 
+       <Image source={Logo} style={{width:"90%", height:"80%"}} /> 
       
       </View>
       
@@ -66,7 +65,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   barra: {
-    height: "90%",
+    height: "12%",
     backgroundColor: "#6495ED",
     flexDirection:"row"
   },
@@ -75,55 +74,55 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     flex:1.6,
     textAlignVertical:"center",
-    top:"10%"
+    top:10
     
     
   },
   imagem: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginBottom: "50%",
+    marginBottom: 50,
     width: "100%",
     alignItems: "baseline",
     
   },
   logo: {
-    width: "90%",
-    height: "40%",
+    width: 90,
+    height: 40,
     
   },
   logoContainer:{
     flex:1,
     alignItems:"center",
-    top:"15%"
+    top:15
   },
   alexandre: {
-    width: "220%",
-    height: "160%",
+    width: "175%",
+    height: 160,
   },
   ana: {
-    width: "220%",
-    height: "160%",
+    width: "300%",
+    height: 160,
   },
   boeck: {
-    width: "220%",
-    height: "160%",
+    width: "250%",
+    height: 160,
   },
   enzo: {
-    width: "220%",
-    height: "160%",
+    width: "240%",
+    height: 160,
   },
   madu: {
-    marginTop: "1%",
-    width: "220%",
-    height: "160%",
+    marginTop: 1,
+    width: 220,
+    height: 160,
     justifyContent: "space-evenly",
     
   },
   madu2: {
     alignItems: "center",
     justifyContent:"center",
-    bottom:"40%"
+    bottom:40
   },
   nomes: {
     alignItems: "center",
@@ -131,7 +130,7 @@ export const styles = StyleSheet.create({
   },
   conteudo: {
     flex: 1,
-    padding: "20%",
+    padding: 10,
     alignItems: "center",
   },
   ale:{
@@ -152,3 +151,4 @@ export const styles = StyleSheet.create({
   },
 
 });
+
