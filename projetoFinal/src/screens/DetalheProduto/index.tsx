@@ -128,21 +128,21 @@ export const DetalheProduto = ({ route }: DetalhesProp) => {
                 <Text style={styles.infoTitle}>Nome do Livro: </Text>
                 <Text style={styles.detailText}>{livro.nome} </Text>
               </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Autor(a):</Text>
-                <Text style={styles.detailText}>{livro.autor} </Text>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Autor(a): </Text>
+                <Text style={style.detailText}>{livro.autor} </Text>
               </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Editora:</Text>
-                <Text style={styles.detailText}>{livro.editora} </Text>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Editora: </Text>
+                <Text style={style.detailText}>{livro.editora} </Text>
               </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Categoria:</Text>
-                <Text style={styles.detailText}>{livro.categoria} </Text>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Categoria: </Text>
+                <Text style={style.detailText}>{livro.categoria} </Text>
               </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoTitle}>Preço:</Text>
-                <Text style={styles.detailText}>{livro.preco} </Text>
+              <View style={style.infoRow}>
+                <Text style={style.infoTitle}>Preço: </Text>
+                <Text style={style.detailText}>{livro.preco} </Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.infoTitle}>Quantidade de Páginas: </Text>

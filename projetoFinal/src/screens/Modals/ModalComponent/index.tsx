@@ -70,7 +70,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Nome do Livro: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Nome do Livro que estava antes"
+                placeholder="Nome do Livro"
                 value={livroEditado.nome}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, nome: text })
@@ -79,7 +79,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Autor(a): </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Nome do Autor que estava antes"
+                placeholder="Nome do Autor"
                 value={livroEditado.autor}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, autor: text })
@@ -88,7 +88,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Editora: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Nome da Editora que estava antes"
+                placeholder="Nome da Editora"
                 value={livroEditado.editora}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, editora: text })
@@ -97,7 +97,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Categoria: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Nome da Categoria que estava a..."
+                placeholder="Nome da Categoria"
                 value={livroEditado.categoria}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, categoria: text })
@@ -106,7 +106,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Preço: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Preço que estava antes"
+                placeholder="Preço"
                 value={livroEditado.preco}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, preco: text })
@@ -115,7 +115,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Qnt. Paginas: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Qnt de Páginas que estava antes"
+                placeholder="Qnt de Páginas"
                 value={livroEditado.qntpaginas}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, qntpaginas: text })
@@ -124,7 +124,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Sumario: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Texto que estava antes"
+                placeholder="Texto"
                 value={livroEditado.sinopse}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, sinopse: text })
@@ -133,7 +133,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
               <Text style={styles.modalTitulo}>Url Imagem da Capa: </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Endereço que estava antes"
+                placeholder="URL da Capa"
                 value={livroEditado.imagem}
                 onChangeText={(text) =>
                   setLivroEditado({ ...livroEditado, imagem: text })

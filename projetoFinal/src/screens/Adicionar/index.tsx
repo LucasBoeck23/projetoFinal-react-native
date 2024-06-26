@@ -171,18 +171,11 @@ const voltarPagina = () => {
           <View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Nome do Livro: </Text>
-              <TextInput style={style.infoTitle}
-            placeholder="Nome"
-            value={nome}
-            />
+              <Text style={style.infoTitle}> {nome} </Text> 
             </View>
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Autor(a): </Text>
-              <TextInput style={style.infoTitle}
-            placeholder="autor(a)"
-            value={autor}
-            onChangeText={setAutor}
-            />
+              <Text style={style.infoTitle}> {autor} </Text>
             </View >
             <View style={style.infoRow}>
               <Text style={style.infoTitle}>Editora: </Text>
