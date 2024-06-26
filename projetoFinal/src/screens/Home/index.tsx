@@ -11,7 +11,7 @@ import {
 import { getAllLogins } from "../../services/Login/LoginService";
 import { Logins } from "../../../src/types/types";
 import { useFonts } from "expo-font";
-import { homeStyles } from "./HomeStyles";
+import { styles } from "./styles";
 import { getAllBooks } from "../../services/Books/booksService";
 import { Books } from "../../types/types";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -72,19 +72,19 @@ export const Home = ({navigation}: any ) => {
   };
 
   return (
-    <View style={homeStyles.containerMain}>
-      <View style={homeStyles.statusbar}>
-        <View style={homeStyles.textContainer}>
-          <Text style={homeStyles.titulo}>
+    <View style={styles.containerMain}>
+      <View style={styles.statusbar}>
+        <View style={styles.textContainer}>
+          <Text style={styles.titulo}>
             Bem vindo(a) a sua <Text style={{ color: "#ffffff" }}>loja</Text>!
           </Text>
-          <View style={homeStyles.containerPesquisa}>
+          <View style={styles.containerPesquisa}>
             <Image
               source={require("../../../assets/image/Vector.png")}
-              style={homeStyles.iconLupa}
+              style={styles.iconLupa}
             />
             <TextInput
-              style={homeStyles.textInput}
+              style={styles.textInput}
               placeholder="Pesquisar"
               placeholderTextColor="#c8c8c8"
               onChangeText={setSearchWord}
@@ -93,31 +93,31 @@ export const Home = ({navigation}: any ) => {
         </View>
         <Image
           source={require("../../../assets/image/IconPerfil.png")}
-          style={homeStyles.imagem}
+          style={styles.imagem}
         />
       </View>
       <FlatList
         data={allBooks.filter(filterBooks)}
         numColumns={3}
         renderItem={({ item }) => (
-          <View style={homeStyles.itemContainer}>
-            <TouchableOpacity
-            onPress={() =>
-            handleDetalhes(item)}
-            >
+          <View style={styles.itemContainer}>
+            <TouchableOpacity onPress={() => handleDetalhes(item)}>
               <Image
                 source={{ uri: item.imagem }}
-                style={homeStyles.livroImage}
+                style={styles.livroImage}
               />
-              <Text style={homeStyles.textPrecoLivro}>{item.preco}</Text>
+              <Text style={styles.textPrecoLivro}>{item.nome}</Text>
+              <Text style={styles.textPrecoLivro}>
+                <Text>R$ </Text>{item.preco}
+              </Text>
             </TouchableOpacity>
           </View>
         )}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={homeStyles.vitrineContainer}
+        contentContainerStyle={styles.vitrineContainer}
       />
     </View>
-  );
-};
+    );
+  };
 
-export default Home;
+  export default Home

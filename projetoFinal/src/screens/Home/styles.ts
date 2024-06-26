@@ -1,27 +1,27 @@
 import { StyleSheet } from "react-native";
 
-export const homeStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   containerMain: {
     flex: 1,
-    
+
   },
   statusbar: {
-    height: 120,
+    height: "18%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#6495ED",
-    paddingHorizontal: 15,
+    paddingHorizontal: "5%",
   },
   textContainer: {
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: "2%",
   },
   imagem: {
-    marginTop: 15,
-    width: 75,
-    height: 75,
+    marginTop: "5%",
+    width: "28%",
+    height: "68%",
   },
   titulo: {
     color: "#000000",
@@ -31,14 +31,14 @@ export const homeStyles = StyleSheet.create({
   containerPesquisa: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 5,
-    width: 230,
-    height: 40,
+    marginTop: "2%",
+    width: "112%",
+    height: "32%",
     borderWidth: 1,
     borderRadius: 20,
     backgroundColor: "#ffffff",
     borderColor: "#000000",
-    paddingHorizontal: 10,
+    paddingHorizontal: "5%",
   },
   iconLupa: {
     width: 20,
@@ -57,15 +57,19 @@ export const homeStyles = StyleSheet.create({
     justifyContent: "center",
   },
   livroImage: {
-    width: 100,
-    height: 140,
+    width: 80,
+    height: 120,
     marginTop: "15%",
     marginLeft: "8%",
   },
+  
   textPrecoLivro: {
-    marginTop: "5%",
-    color: "#012E43",
+    color: "#6495ED",
     fontSize: 14,
-    fontFamily: "Poppins-SemiBold",
+    fontFamily: "Poppins-Bold",
+    textAlign: "center",
+    borderStyle: "solid",
+    borderColor: "red",
+    borderWidth: 2,
   },
 });
