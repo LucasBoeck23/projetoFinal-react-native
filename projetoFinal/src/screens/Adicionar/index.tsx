@@ -18,7 +18,7 @@ import { useFonts } from "expo-font";
 
 export const Adicionar = () => {
   const [allBooks, setAllBooks] = useState<Books[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(true);
+  const [carregando, setCarregando] = useState<boolean>(false);
   const [nome, setNome] = useState("");
   const [autor, setAutor] = useState("");
   const [editora, setEditora] = useState("");
@@ -44,14 +44,14 @@ export const Adicionar = () => {
   const editar = () => { setModalVisible(!modalVisible)}
 
   const getbooks = async () => {
-    setLoading(true);
+    setCarregando(true);
     try {
       const books = await getAllBooks();
       setAllBooks(books);
     } catch (err) {
       console.log(err);
     }
-    setLoading(false);
+    setCarregando(false);
   };
 
   const navigation= useNavigation()
@@ -81,9 +81,11 @@ const voltarPagina = () => {
       newBook.sinopse
     ) {
       try {
+        setCarregando(true)
         const  data  = await postNewBook(newBook);
         setAllBooks([...allBooks, data]);
         console.log(data);
+        console.warn("Livro adicionado com sucesso!");
         setNome("");
         setAutor("");
         setEditora("");
@@ -92,9 +94,11 @@ const voltarPagina = () => {
         setPaginas("");
         setImagem("");
         setSinopse("");
+        voltarPagina();
       } catch (err) {
         console.log(err);
       }
+      setCarregando(false)
     } else {
       window.alert("Preencha todos os campos!");
     }
@@ -104,7 +108,7 @@ const voltarPagina = () => {
     getbooks();
   }, []);
 
-  if (isLoading) {
+  if (carregando) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size={"large"} />

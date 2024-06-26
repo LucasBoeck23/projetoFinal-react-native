@@ -31,6 +31,7 @@ export const DetalheProduto = ({ route }: DetalhesProp) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
+  const [carregando, setCarregando] = useState(false);
 
   const [fontsLoaded] = useFonts({
     "Poppins-SemiBold": require("../../../assets/fonts/Poppins-SemiBold.ttf"),
@@ -53,6 +54,7 @@ export const DetalheProduto = ({ route }: DetalhesProp) => {
 
   const salvarEdicao = async (livroEditado: Books) => {
     try {
+      setCarregando(true);
       const data = await updateLivro(livro.id, livroEditado);
       if (data) {
         setLivro(livroEditado);
@@ -61,6 +63,7 @@ export const DetalheProduto = ({ route }: DetalhesProp) => {
     } catch (error) {
       console.log(error);
     }
+    setCarregando(false);
   };
 
   return (
@@ -165,4 +168,5 @@ export const DetalheProduto = ({ route }: DetalhesProp) => {
       />
     </ScrollView>
   );
+
 };

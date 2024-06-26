@@ -26,7 +26,7 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
 }) => {
   const [livroEditado, setLivroEditado] = useState<Books>(livro);
   const [modalVisible, setModalVisible] = useState(false);
-  const [isLoading, setLoading] = useState<boolean>();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   if (isLoading) {
     return (
@@ -37,14 +37,13 @@ export const ModalComponent: React.FC<ModalEditarProps> = ({
   }
 
   const updateLivro = () => {
-    setLoading(true);
     try {
       onSave(livroEditado);
       onRequestClose();
+      console.warn("Suas Alterações foram salvas!")
     } catch (error) {
       console.log(error);
     }
-    setLoading(false);
   };
 
   return (

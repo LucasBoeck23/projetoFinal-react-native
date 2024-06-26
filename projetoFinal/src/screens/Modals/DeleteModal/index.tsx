@@ -40,6 +40,7 @@ const DeleteModal = ({ onRequestClose, visible, livro }: ModaDeleteProps) => {
       const { data } = await api.delete(`/livros/${id}`);
       console.log(data);
       voltarPagina();
+      console.warn("Livro excluído com sucesso!");
     } catch (error) {
       console.log(error);
     }

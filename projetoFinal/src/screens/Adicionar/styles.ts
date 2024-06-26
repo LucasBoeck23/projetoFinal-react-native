@@ -132,5 +132,8 @@ import { StyleSheet } from "react-native";
     infoTitle: {
       color: "#012E43",
       fontSize: 16,
+    },
+    detailText:{
+      
     }
   });
