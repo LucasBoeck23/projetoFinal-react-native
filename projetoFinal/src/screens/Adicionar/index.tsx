@@ -24,7 +24,7 @@ export const Adicionar = () => {
   const [editora, setEditora] = useState("");
   const [categoria, setCategoria] = useState("");
   const [preco, setPreco] = useState("");
-  const [paginas, setPaginas] = useState("");
+  const [qntpaginas, setQntpaginas] = useState("");
   const [imagem, setImagem] = useState("");
   const [sinopse, setSinopse] = useState("");
 
@@ -66,7 +66,7 @@ const voltarPagina = () => {
       editora: editora,
       categoria: categoria,
       preco: preco,
-      paginas: paginas,
+      qntpaginas: qntpaginas,
       imagem: imagem,
       sinopse: sinopse,
     };
@@ -76,7 +76,7 @@ const voltarPagina = () => {
       newBook.editora &&
       newBook.imagem &&
       newBook.nome &&
-      newBook.paginas &&
+      newBook.qntpaginas &&
       newBook.preco &&
       newBook.sinopse
     ) {
@@ -91,7 +91,7 @@ const voltarPagina = () => {
         setEditora("");
         setCategoria("");
         setPreco("");
-        setPaginas("");
+        setQntpaginas("");
         setImagem("");
         setSinopse("");
         voltarPagina();
@@ -209,8 +209,8 @@ const voltarPagina = () => {
               <Text style={style.infoTitle}>Quantidade de Páginas: </Text>
               <TextInput style={style.infoTitle}
             placeholder="Quantidade de páginas"
-            value={paginas}
-            onChangeText={setPaginas}
+            value={qntpaginas}
+            onChangeText={setQntpaginas}
             />
             </View>
             <View style={style.infoRow}>

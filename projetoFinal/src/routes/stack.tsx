@@ -7,6 +7,8 @@ import { Feather } from "@expo/vector-icons";
 import { Adicionar } from "../screens/Adicionar";
 import { DetalheProduto } from "../screens/DetalheProduto";
 import { StackNavigation } from "../types/types";
+import { useEffect, useState } from "react";
+import { Keyboard } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +18,26 @@ export type DetalhesProp = NativeStackNavigationProp<StackNavigation,"DetalhePro
 const  { Screen,Navigator } = createNativeStackNavigator<StackNavigation>()
 
 
+
+
 const MyTabs = () => {
+  
+  const [keybord, setKeybord] = useState(false);
+
+  useEffect( ()=> {
+    Keyboard.addListener("keyboardDidShow", KeyboardDidShow);
+    Keyboard.addListener("keyboardDidHide", KeyboardDidHide);
+  },[])
+
+  
+  const KeyboardDidShow = () => {
+    setKeybord(true);
+    }
+    const KeyboardDidHide = () => {
+      setKeybord(false);
+    }
+
+  
   return (
     <Tab.Navigator
       screenOptions={{
@@ -26,7 +47,8 @@ const MyTabs = () => {
           position: "absolute",
           height: 70,
           paddingBottom:5,
-          paddingTop:5
+          paddingTop:5,
+          opacity: keybord == false ? 1 : 0
         },
         tabBarActiveTintColor:"white",
         tabBarLabelStyle: {

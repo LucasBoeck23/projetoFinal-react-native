@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
   },
   imagem: {
     marginTop: "5%",
-    width: "22%",
-    height: "48%",
+    width: 80,
+    height: 80,
   },
   titulo: {
     color: "#000000",
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: "2%",
     width: "100%",
-    height: "38%",
+    height: 30,
     borderWidth: 1,
     borderRadius: 20,
     borderColor: "#000000",
@@ -61,8 +61,7 @@ export const styles = StyleSheet.create({
   },
   vitrineContainer: {
     alignItems: "center",
-    top: "5%",
-    flexGrow: 1,
+    paddingBottom:"10%",
   },
   imgView: {
     justifyContent: "center",
